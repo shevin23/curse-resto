@@ -1,0 +1,129 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 19% 16%; /* Dark background */
+    --foreground: 38 52% 94%; /* Off-white text */
+
+    --card: 240 15% 22%;
+    --card-foreground: 38 52% 94%;
+
+    --popover: 240 15% 22%;
+    --popover-foreground: 38 52% 94%;
+
+    --primary: 261 38% 60%; /* Purple */
+    --primary-foreground: 38 52% 94%;
+
+    --secondary: 60 54% 91%; /* Aged parchment */
+    --secondary-foreground: 240 19% 16%;
+
+    --muted: 240 15% 25%;
+    --muted-foreground: 38 30% 80%;
+
+    --accent: 0 73% 58%; /* Blood red */
+    --accent-foreground: 38 52% 94%;
+
+    --destructive: 0 73% 58%; /* Also blood red */
+    --destructive-foreground: 38 52% 94%;
+
+    --border: 240 15% 30%;
+    --input: 240 15% 30%;
+    --ring: 261 38% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 19% 16%;
+    --sidebar-foreground: 38 52% 94%;
+    --sidebar-primary: 261 38% 60%;
+    --sidebar-primary-foreground: 38 52% 94%;
+    --sidebar-accent: 240 15% 25%;
+    --sidebar-accent-foreground: 38 52% 94%;
+    --sidebar-border: 240 15% 30%;
+    --sidebar-ring: 261 38% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-undead-dark text-undead-bone;
+    background-image: url('/tomb-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  /* Zombie Theme */
+  .zombie-theme {
+    --primary: 90 20% 80%; /* Zombie green */
+    --accent: 120 15% 40%; /* Darker zombie green */
+  }
+
+  /* Mummy Theme */
+  .mummy-theme {
+    --primary: 45 54% 75%; /* Gold */
+    --accent: 36 60% 55%; /* Darker gold */
+  }
+}
+
+@layer components {
+  .parchment {
+    @apply bg-undead-parchment bg-opacity-90 text-undead-dark p-6 rounded-lg border-2 border-undead-aged shadow-lg backdrop-blur-sm;
+    background-image: url('/parchment-texture.jpg');
+    background-blend-mode: overlay;
+  }
+  
+  .ancient-scroll {
+    @apply bg-undead-aged bg-opacity-90 p-5 rounded-lg border border-undead-charcoal shadow-md transform transition-all duration-300 overflow-hidden;
+    background-image: url('/scroll-texture.jpg');
+    background-blend-mode: overlay;
+  }
+  
+  .ancient-scroll:hover {
+    @apply scale-105 shadow-xl;
+  }
+  
+  .fog-overlay {
+    @apply fixed inset-0 pointer-events-none opacity-30 animate-fog-flow;
+    background-image: url('/fog.png');
+    background-size: cover;
+    z-index: 10;
+  }
+  
+  .torch-light {
+    @apply absolute w-full h-full rounded-full bg-yellow-100 opacity-10 blur-2xl animate-flicker;
+    filter: blur(20px);
+  }
+  
+  .ritual-button {
+    @apply bg-undead-blood hover:bg-red-700 text-white py-3 px-6 rounded-lg shadow-lg transform transition-all duration-300 border-2 border-undead-dark;
+  }
+  
+  .ritual-button:hover {
+    @apply scale-105 shadow-xl;
+    box-shadow: 0 0 20px rgba(234, 56, 76, 0.5);
+  }
+
+  .room-card {
+    @apply relative border-2 border-undead-charcoal rounded-lg overflow-hidden cursor-pointer transform transition-all duration-300;
+    height: 250px;
+  }
+  
+  .room-card:hover {
+    @apply scale-105 border-undead-purple;
+    box-shadow: 0 0 25px rgba(126, 105, 171, 0.6);
+  }
+  
+  .room-card-content {
+    @apply absolute inset-0 bg-gradient-to-t from-black to-transparent p-4 flex flex-col justify-end;
+  }
+  
+  .menu-scroll {
+    @apply ancient-scroll my-4 animate-float;
+    animation-delay: calc(var(--scroll-index) * 0.2s);
+  }
+}
