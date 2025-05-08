@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250507180309 extends AbstractMigration
+final class Version20250508170500 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -37,6 +37,9 @@ final class Version20250507180309 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE room (id INT AUTO_INCREMENT NOT NULL, uuid BINARY(16) NOT NULL COMMENT '(DC2Type:uuid)', name VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, image_url VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)', updated_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+        SQL);
+        $this->addSql(<<<'SQL'
+            CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) NOT NULL, roles LONGTEXT NOT NULL COMMENT '(DC2Type:array)', password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, user_type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE menu_item ADD CONSTRAINT FK_D754D55054177093 FOREIGN KEY (room_id) REFERENCES room (id)
@@ -90,6 +93,9 @@ final class Version20250507180309 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE room
+        SQL);
+        $this->addSql(<<<'SQL'
+            DROP TABLE user
         SQL);
     }
 }
